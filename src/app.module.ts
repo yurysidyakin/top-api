@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { ProductModule } from './product/product.module';
 import { ReviewModule } from './review/review.module';
 import { TopPageModule } from './top-page/top-page.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { TopPageModule } from './top-page/top-page.module';
     ProductModule,
     ReviewModule,
     MongooseModule.forRoot('mongodb://localhost:27017/mongo'),
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
