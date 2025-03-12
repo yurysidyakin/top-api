@@ -20,6 +20,7 @@ export class Review {
   @Prop()
   createdAt: Date;
 
+  @Prop()
   productId: Types.ObjectId;
 }
 
