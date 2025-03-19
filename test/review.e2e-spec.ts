@@ -47,12 +47,19 @@ describe('AppController (e2e)', () => {
       });
   });
 
+  it('/api/review/create (POST) – fail', () => {
+    return request(app.getHttpServer())
+      .post('/api/review/create/')
+      .send({ ...testDto, rating: 0 })
+      .expect(400);
+  });
+
   it('/api/review/byProduct/:productId (GET) – success', async () => {
     return request(app.getHttpServer())
       .get('/api/review/byProduct/' + productId)
       .expect(200)
-      .then(({ body }: { body: { _id: string } }) => {
-        expect(body._id);
+      .then(({ body }: request.Response) => {
+        expect(body);
       });
   });
 
@@ -60,8 +67,8 @@ describe('AppController (e2e)', () => {
     return request(app.getHttpServer())
       .get('/api/review/byProduct/' + new Types.ObjectId().toHexString())
       .expect(200)
-      .then(({ body }: { body: { _id: string } }) => {
-        expect(body._id).toBeUndefined();
+      .then(({ body }: request.Response) => {
+        expect(body).toEqual([]);
       });
   });
 
