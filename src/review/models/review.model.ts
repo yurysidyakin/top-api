@@ -20,7 +20,7 @@ export class Review {
   @Prop()
   createdAt: Date;
 
-  @Prop()
+  @Prop({ type: Types.ObjectId, ref: 'Product' })
   productId: Types.ObjectId;
 }
 
