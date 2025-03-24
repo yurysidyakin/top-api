@@ -45,6 +45,9 @@ export class ProductService {
             localField: '_id',
             foreignField: 'productId',
             as: 'reviews',
+            pipeline: [
+              { $sort: { createdAt: -1 } }, // Сортировка отзывов по дате
+            ],
           },
         },
         {
@@ -52,6 +55,19 @@ export class ProductService {
             reviewCount: { $size: '$reviews' },
             reviewAvg: { $avg: '$reviews.rating' },
             rating: { $avg: '$reviews.rating' },
+            reviews: {
+              $map: {
+                input: '$reviews',
+                as: 'review',
+                in: {
+                  _id: '$$review._id',
+                  name: '$$review.name',
+                  title: '$$review.title',
+                  rating: '$$review.rating',
+                  createdAt: '$$review.createdAt',
+                },
+              },
+            },
           },
         },
       ])
