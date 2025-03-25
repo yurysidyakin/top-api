@@ -45,9 +45,7 @@ export class ProductService {
             localField: '_id',
             foreignField: 'productId',
             as: 'reviews',
-            pipeline: [
-              { $sort: { createdAt: -1 } }, // Сортировка отзывов по дате
-            ],
+            pipeline: [{ $sort: { createdAt: -1 } }],
           },
         },
         {
