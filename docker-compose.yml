@@ -1,16 +1,15 @@
-version: '3.8'
 services:
   top-api:
     image: ghcr.io/yurysidyakin/top-api:main
     container_name: top-api
     restart: always
     ports:
-      - 3000:3000
+      - '3000:3000'
     volumes:
-      - ./.env:/opt/app/.env
+      - ./.env:/opt/app/.env:ro
     networks:
-      - mongo_network
+      - mongo_default
+
 networks:
-  mongo_network:
-    name: mongo_default
+  mongo_default:
     external: true
