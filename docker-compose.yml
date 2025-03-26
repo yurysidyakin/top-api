@@ -1,5 +1,6 @@
 services:
   top-api:
+    platform: linux/amd64
     image: ghcr.io/yurysidyakin/top-api:main
     container_name: top-api
     restart: always
