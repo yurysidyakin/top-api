@@ -32,7 +32,7 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/kreomanser/nest-api:main
-            ghcr.io/kreomanser/nest-api:${{ github.sha }}
+            ghcr.io/yurysidyakin/top-api:main
+            ghcr.io/yurysidyakin/top-api:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
