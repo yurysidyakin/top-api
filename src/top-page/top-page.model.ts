@@ -35,28 +35,39 @@ export class TopPageAdvantage {
   description: string;
 }
 
-@Schema()
+@Schema({ timestamps: true })
 export class TopPageModel {
   @Prop({ enum: TopLevelCategory })
   firstCategory: TopLevelCategory;
+
   @Prop()
   secondCategory: string;
+
   @Prop({ unique: true })
   alias: string;
+
   @Prop()
   title: string;
+
   @Prop()
   category: string;
+
   @Prop({ type: () => HhData })
   hh?: HhData;
+
   @Prop({ type: () => [TopPageAdvantage] })
   advantages?: TopPageAdvantage[];
+
   @Prop()
   seoText: string;
+
   @Prop()
   tagsTitle: string;
+
   @Prop({ type: () => [String] })
   tags: string[];
 }
 
 export const TopPageSchema = SchemaFactory.createForClass(TopPageModel);
+
+TopPageSchema.index({ '$**': 'text' });
