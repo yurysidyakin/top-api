@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   top-api:
-    image: top-api:latest
+    image: docker pull ghcr.io/yurysidyakin/top-api:8a34aca64dba1876d65311e109e8192681deeb66
     container_name: top-api
     restart: always
     ports:
