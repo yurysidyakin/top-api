@@ -11,6 +11,7 @@ import { ProductModule } from './product/product.module';
 import { ReviewModule } from './review/review.module';
 import { TopPageModule } from './top-page/top-page.module';
 import { UsersModule } from './users/users.module';
+import { FilesModule } from './files/files.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { UsersModule } from './users/users.module';
       useFactory: getMongoConfig,
     }),
     UsersModule,
+    FilesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
