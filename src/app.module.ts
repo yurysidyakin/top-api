@@ -7,11 +7,12 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { getJWTConfig } from './configs/jwt.config';
 import { getMongoConfig } from './configs/mongo.config';
+import { FilesModule } from './files/files.module';
 import { ProductModule } from './product/product.module';
 import { ReviewModule } from './review/review.module';
+import { SitemapModule } from './sitemap/sitemap.module';
 import { TopPageModule } from './top-page/top-page.module';
 import { UsersModule } from './users/users.module';
-import { FilesModule } from './files/files.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { FilesModule } from './files/files.module';
     }),
     UsersModule,
     FilesModule,
+    SitemapModule,
   ],
   controllers: [AppController],
   providers: [AppService],

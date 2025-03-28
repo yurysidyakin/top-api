@@ -46,6 +46,9 @@ export class TopPageModel {
   @Prop({ unique: true })
   alias: string;
 
+  @Prop({ type: Date })
+  updatedAt?: Date;
+
   @Prop()
   title: string;
 
