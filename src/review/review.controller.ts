@@ -13,6 +13,7 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { IdValidationPipe } from 'src/pipes/id-validation.pipe';
+import { TelegramService } from 'src/telegram/telegram.service';
 import { JwtAuthGuard } from '../auth/guards/jwt.guard';
 import { UserEmail } from '../decorators/user-email.decorator';
 import { CreateReviewDto } from './dto/create-review.dto';
@@ -24,7 +25,10 @@ import { ReviewService } from './review.service';
 export class ReviewController {
   private readonly logger = new Logger(ReviewController.name);
 
-  constructor(private readonly reviewService: ReviewService) {}
+  constructor(
+    private readonly reviewService: ReviewService,
+    private readonly telegramService: TelegramService,
+  ) {}
 
   @UsePipes(new ValidationPipe())
   @Post('create')
@@ -41,6 +45,19 @@ export class ReviewController {
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
+  }
+
+  @UsePipes(new ValidationPipe())
+  @Post('notify')
+  async notify(@Body() dto: CreateReviewDto) {
+    const message =
+      `Имя:${dto.name}\n` +
+      `Заголовок:${dto.title}\n` +
+      `Описание:${dto.description}\n` +
+      `Рейтинг:${dto.rating}\n` +
+      `ID Продукта:${dto.productId}`;
+
+    return this.telegramService.sendMessage(message);
   }
 
   @UseGuards(JwtAuthGuard)
